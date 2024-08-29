@@ -1,0 +1,25 @@
+<section class="screen-products">
+    <div class="container">
+        <div class="screen-products__products">
+            <div class="product" *ngFor="let product of globals.products">
+                <h2 class="product__title">
+                    {{ product.title }}                    
+                </h2>
+                <a href="#">
+                    <img class="product__image" [src]="product.imageUrl">
+                </a>
+                <p class="product__description">
+                    {{ product.description }}
+                </p>
+                <ul class="product__tags">
+                    <li class="product-tag" *ngFor="let tag of product.tags">
+                        {{ tag }}
+                    </li>
+                </ul>
+                <p class="product__price">
+                    {{ product.price }} EUR
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

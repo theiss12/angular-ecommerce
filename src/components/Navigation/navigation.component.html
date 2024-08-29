@@ -1,0 +1,12 @@
+<nav class="component-navigation">
+    <ul class="component-navigation__items">
+        <li class="navigation-item" *ngFor="let navigationItem of navigationItems">
+            <a 
+                class="navigation-item__link"
+                [routerLink]="navigationItem.endpointUrl"
+            >
+                {{navigationItem.label}}
+            </a>
+        </li>
+    </ul>
+</nav>

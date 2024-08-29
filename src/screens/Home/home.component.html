@@ -1,0 +1,15 @@
+<section class="screen-home">
+    <div class="container">
+        <div class="product" *ngIf="globalService.products[randomIndex]; else elseBlock">
+            <h2 class="product__title">
+                {{ globalService.products[randomIndex].title }}
+            </h2>
+            <a href="#">
+                <img class="product__image" [src]="globalService.products[randomIndex].imageUrl">
+            </a>
+        </div>
+        <ng-template #elseBlock>
+            <div class="loader"></div>
+        </ng-template>
+    </div>
+</section>
