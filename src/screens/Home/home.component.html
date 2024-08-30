@@ -1,10 +1,23 @@
 <section class="screen-home">
     <div class="container">
-        <div class="product" *ngIf="globalService.products[randomIndex]; else elseBlock">
+        <h1 class="screen-home__title">
+            Buyless
+        </h1>
+        <h2 class="screen-home__motto">
+            Your Right Place for the Wrong Product
+        </h2>
+        <div
+            *ngIf="globalService.products[randomIndex]; else elseBlock"
+            [ngClass]="{
+                product: true,
+                'product-animate': animate
+            }"
+            (animationend)="turnOffAnimation()"
+        >
             <h2 class="product__title">
                 {{ globalService.products[randomIndex].title }}
             </h2>
-            <a href="#">
+            <a [routerLink]="'../products/' + globalService.products[randomIndex].id">
                 <img class="product__image" [src]="globalService.products[randomIndex].imageUrl">
             </a>
         </div>

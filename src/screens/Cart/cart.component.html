@@ -1,0 +1,38 @@
+<section class="screen-cart">
+    <div class="container">
+        <div class="screen-cart__items">
+            <div
+                class="cart-item"
+                *ngFor="let cartItem of globals.cart"
+            >
+                <img class="cart-item__image" [src]="cartItem.imageUrl">
+                <button class="cart-item__remove-button" (click)="globals.deleteCartItem(cartItem)">
+                    Remove
+                </button>
+                <h2 class="cart-item__title">
+                    {{ cartItem.title }}
+                </h2>
+                <div class="cart-item__controlls">
+                    <button
+                        class="cart-item__button"
+                        (click)="globals.removeProductFromCart(cartItem)"
+                    >
+                        -
+                    </button>
+                    <p class="cart-item__amount">
+                        {{ cartItem.price }} x {{ cartItem.amount }} EUR
+                    </p>
+                    <button
+                        class="cart-item__button"
+                        (click)="globals.addProductToCart(cartItem)"
+                    >
+                        +
+                    </button>
+                </div>
+            </div>
+        </div>
+        <a routerLink="/checkout" *ngIf="globals.cart.length > 0">
+            Checkout
+        </a>
+    </div>
+</section>

@@ -1,0 +1,31 @@
+.screen-product {
+    .product {
+        &__image {
+            object-fit: contain;
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    .message-layer {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        backdrop-filter: blur(10px);
+
+        &--open {
+            display: unset;
+        }
+
+        &__box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
+    }
+}

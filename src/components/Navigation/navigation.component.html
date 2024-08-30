@@ -5,6 +5,9 @@
                 class="navigation-item__link"
                 [routerLink]="navigationItem.endpointUrl"
             >
+                <span class="navigation-item__amount" *ngIf="navigationItem.label === 'Cart' && globals.getCartTotalAmount() > 0">
+                    {{ globals.getCartTotalAmount() }}
+                </span>
                 {{navigationItem.label}}
             </a>
         </li>

@@ -1,17 +1,23 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { NgFor, NgIf } from "@angular/common";
+import { NgFor, NgIf, NgClass } from "@angular/common";
 import { GlobalService } from "../../app/services/global/global.service";
+import { RouterLink } from "@angular/router";
 
 @Component({
     standalone: true,
     selector: "home",
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.scss"],
-    imports: [NgFor, NgIf]
+    imports: [NgFor, NgIf, NgClass, RouterLink]
 })
 export class Home implements OnInit, OnDestroy {
     randomIndex: number = 0;
     intervalId: any;
+    animate: boolean = true;
+
+    turnOffAnimation() {
+        this.animate = false;
+    }
 
     getRandomIndex(): number {
         if (!this.globalService) return -1;
@@ -26,6 +32,7 @@ export class Home implements OnInit, OnDestroy {
         this.intervalId = setInterval(() => {
             const newIndex: number = this.getRandomIndex();
             this.randomIndex = newIndex;
+            this.animate = true;
         }, 3000);
     }
 

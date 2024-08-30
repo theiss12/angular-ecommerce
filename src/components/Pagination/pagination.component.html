@@ -1,0 +1,7 @@
+<ul class="component-pagination">
+    <li class="component-pagination__item" *ngFor="let pageNumber of pageNumbers">
+        <button class="pagination-button" [value]="pageNumber" (click)="emitPage($event)">
+            {{ pageNumber + 1 }}
+        </button>
+    </li>
+</ul>

@@ -1,16 +1,23 @@
 <section class="screen-products">
     <div class="container">
+        <div class="screen-products__filter">
+            <input
+                type="text"
+                placeholder="🔎 Search for a product..."
+                class="search-term-input"
+                (input)="navigate($event)"
+            >
+        </div>
         <div class="screen-products__products">
-            <div class="product" *ngFor="let product of globals.products">
+            <div class="product" *ngFor="let product of getDisplayArray().slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage)">
                 <h2 class="product__title">
-                    {{ product.title }}                    
+                    <a class="title-link" [routerLink]="'./' + product.id">
+                        {{ product.title }}
+                    </a>   
                 </h2>
-                <a href="#">
+                <a [routerLink]="'./' + product.id">
                     <img class="product__image" [src]="product.imageUrl">
                 </a>
-                <p class="product__description">
-                    {{ product.description }}
-                </p>
                 <ul class="product__tags">
                     <li class="product-tag" *ngFor="let tag of product.tags">
                         {{ tag }}
@@ -19,7 +26,17 @@
                 <p class="product__price">
                     {{ product.price }} EUR
                 </p>
+                <a class="product__button" [routerLink]="'./' + product.id">
+                    Details
+                </a>
             </div>
         </div>
+        <ul class="screen-product__pagination">
+            <li class="pagination-item" *ngFor="let pageNumber of getPageNumbers()">
+                <button class="pagination-item__button" [value]="pageNumber" (click)="setPage($event)">
+                    {{ pageNumber + 1 }}
+                </button>
+            </li>
+        </ul>
     </div>
 </section>

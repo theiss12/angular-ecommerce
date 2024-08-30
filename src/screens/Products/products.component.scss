@@ -1,0 +1,11 @@
+.screen-products {
+    &__products {
+        .product {
+            &__image {
+                object-fit: contain;
+                width: 200px;
+                height: 200px;
+            }
+        }
+    }
+}

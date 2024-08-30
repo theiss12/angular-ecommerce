@@ -1,0 +1,48 @@
+<section class="screen-product">
+    <div class="container">
+        <div class="product" *ngIf="slugProduct; else loading">
+            <h2 class="product__title">
+                {{ slugProduct.title }}
+            </h2>
+            <img [src]="slugProduct.imageUrl" class="product__image">
+            <p class="product__description">
+                {{ slugProduct.description }}
+            </p>
+            <ul class="product__tags">
+                <li class="product-tag" *ngFor="let tag of slugProduct.tags">
+                    {{ tag }}
+                </li>
+            </ul>
+            <p class="product__price">
+                {{ slugProduct.price }} EUR
+            </p>
+            <button
+                class="cart-button"
+                (click)="putProductIntoCart()"
+            >
+                Put to Cart
+            </button>
+        </div>
+        <ng-template #loading>
+            <div class="loader"></div>
+        </ng-template>
+        <div
+            [ngClass]="{
+                'message-layer': true,
+                'message-layer--open': isMessageOpen
+            }"
+        >
+            <div class="message-layer__box">
+                <p class="message">
+                    Product is now in your cart.
+                </p>
+                <button
+                    class="close-button"
+                    (click)="closeMessage()"
+                >
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
