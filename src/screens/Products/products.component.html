@@ -7,6 +7,9 @@
                 class="search-term-input"
                 (input)="navigate($event)"
             >
+            <p class="no-results-message" *ngIf="filtered.length === 0">
+                No search results...
+            </p>
         </div>
         <div class="screen-products__products">
             <div class="product" *ngFor="let product of getDisplayArray().slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage)">
@@ -31,8 +34,14 @@
                 </a>
             </div>
         </div>
-        <ul class="screen-product__pagination">
-            <li class="pagination-item" *ngFor="let pageNumber of getPageNumbers()">
+        <ul class="screen-products__pagination">
+            <li 
+                *ngFor="let pageNumber of getPageNumbers()"
+                [ngClass]="{
+                    'pagination-item': true,
+                    'pagination-item--active': pageNumber === page
+                }" 
+            >
                 <button class="pagination-item__button" [value]="pageNumber" (click)="setPage($event)">
                     {{ pageNumber + 1 }}
                 </button>

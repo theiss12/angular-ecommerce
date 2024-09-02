@@ -1,5 +1,5 @@
 <section class="screen-cart">
-    <div class="container">
+    <div class="container" *ngIf="globals.cart.length > 0; else noitems">
         <div class="screen-cart__items">
             <div
                 class="cart-item"
@@ -31,8 +31,18 @@
                 </div>
             </div>
         </div>
-        <a routerLink="/checkout" *ngIf="globals.cart.length > 0">
+        <a routerLink="/checkout">
             Checkout
         </a>
     </div>
+    <ng-template #noitems>
+        <div class="no-items">
+            <p class="no-items__message">
+                There is nothing in your cart
+            </p>
+            <button class="no-items__button" (click)="router.navigateByUrl('/products')">
+                Products
+            </button>
+        </div>
+    </ng-template>
 </section>

@@ -1,5 +1,72 @@
 <section class="screen-checkout">
     <div class="container">
-        <h2>Checkout</h2>
+        <div class="screen-checkout__steps">
+            <h2 class="step-title">
+                {{ steps[step] }}
+            </h2>
+            <button
+                *ngFor="let step of steps"
+                (click)="setStep(steps.indexOf(step))"
+            >
+                {{ steps.indexOf(step) + 1 }}
+            </button>
+        </div>
+        <div class="shipping" *ngIf="step === 0">
+            <p class="input-group" *ngFor="let input of inputs">
+                <input
+                    type="text"
+                    class="input-group__text"
+                    [value]="formData[input.property]"
+                    (input)="setFormDataProperty(input.property, $event)"
+                    [placeholder]="input.label"
+                >
+                <label
+                    class="input-group__label"
+                >
+                    {{ input.label }}
+                </label>
+            </p>
+        </div>
+        <table class="summary" *ngIf="step === 1">
+            <thead>
+                <tr>
+                    <th>
+                        Required
+                    </th>
+                    <th>
+                        Your Answer
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let input of inputs">
+                    <td>{{ input.label }}</td>
+                    <td>{{ formData[input.property] }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="screen-checkout__step-controlls">
+            <button
+                class="step-controll-button"
+                (click)="changeStepByAmount(-1)"
+                *ngIf="step !== 0"
+            >
+                Previous
+            </button>
+            <button
+                class="step-controll-button"
+                (click)="changeStepByAmount(1)"
+                *ngIf="step !== steps.length - 1"
+            >
+                Next
+            </button>
+            <button
+                class="step-controll-button"
+                *ngIf="step === steps.length - 1"
+                (click)="submitOrder()"
+            >
+                Order for {{ globals.getCartTotalCost() }} EUR
+            </button>
+        </div>
     </div>
 </section>

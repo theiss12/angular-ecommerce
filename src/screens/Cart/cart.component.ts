@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NgFor, NgIf } from "@angular/common";
 import { GlobalService } from "../../app/services/global/global.service";
-import { RouterLink } from "@angular/router";
+import { RouterLink, Router } from "@angular/router";
 
 @Component({
     standalone: true,
@@ -11,5 +11,7 @@ import { RouterLink } from "@angular/router";
     imports: [NgFor, NgIf, RouterLink]
 })
 export class Cart {
-    constructor(public globals: GlobalService) {}
+    constructor(public globals: GlobalService, public router: Router) {}
+
+    
 }

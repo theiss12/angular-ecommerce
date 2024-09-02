@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NgFor } from "@angular/common";
+import { NgFor, NgClass, NgIf } from "@angular/common";
 import { GlobalService } from "../../app/services/global/global.service";
 import { RouterLink, ActivatedRoute, Router } from "@angular/router";
 
@@ -8,7 +8,7 @@ import { RouterLink, ActivatedRoute, Router } from "@angular/router";
     selector: "products",
     templateUrl: "./products.component.html",
     styleUrls: ["./products.component.scss"],
-    imports: [ NgFor, RouterLink ]
+    imports: [ NgFor, NgIf, NgClass, RouterLink ]
 })
 export class Products implements OnInit {
     filtered: any[] = [];
@@ -37,6 +37,7 @@ export class Products implements OnInit {
 
     setPage(click: any) {
         this.page = parseInt(click.target.value);
+        window.scroll(0, 0);
     }
 
     navigate(input: any): void {

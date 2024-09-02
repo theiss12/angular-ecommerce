@@ -17,7 +17,7 @@ export class GlobalService {
         return JSON.parse(sessionCartJSON);
     }
 
-    private setCart(newCart: any[]): void {
+    setCart(newCart: any[]): void {
         this.cart = newCart;
         sessionStorage.setItem("buyless-cart", JSON.stringify(newCart));
     }
@@ -55,6 +55,10 @@ export class GlobalService {
 
     getCartTotalAmount(): number {
         return this.cart.reduce((total, cartItem) => total = total + cartItem.amount, 0);
+    }
+
+    getCartTotalCost(): number {
+        return this.cart.reduce((total, cartItem) => total = total + cartItem.price * cartItem.amount, 0);
     }
 
     setProducts(newProducts: any[]): void {
